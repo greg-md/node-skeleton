@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { MicroModule } from './../src/Micro.module';
+import { MicroModule } from './../src/micro.module';
 
 describe('MicroController (e2e)', () => {
   let app: INestApplication;

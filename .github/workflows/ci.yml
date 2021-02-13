@@ -15,12 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Pull
-      run: docker-compose pull
+      run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
     - name: Build
-      run: docker-compose build
-    - name: Start App
-      run: docker-compose up -d
-    - name: Start App
-      run: docker-compose up -d
-    - name: Stop
-      run: docker-compose down -v
+      run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
+    - name: Run Tests
+      run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --abort-on-container-exit --exit-code-from ci ci
+    - name: Cleanup
+      run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml down -v
