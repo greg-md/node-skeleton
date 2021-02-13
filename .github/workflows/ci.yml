@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    paths:
+      - '.github/workflows/ci.yml'
+      - '**'
+      - '!docker-compose-local.yml'
+      - '!Makefile'
+      - '!README.md'
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Pull
+      run: docker-compose pull
+    - name: Build
+      run: docker-compose build
+    - name: Start App
+      run: docker-compose up -d
+    - name: Start App
+      run: docker-compose up -d
+    - name: Stop
+      run: docker-compose down -v
