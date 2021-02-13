@@ -10,7 +10,16 @@ on:
       - '!README.md'
 
 jobs:
-  backend:
+  code_style:
+    name: Validate Code Style
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+    - name: Run
+      run: npm run lint
+  test:
+    name: Run Tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -18,7 +27,7 @@ jobs:
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
     - name: Build
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
-    - name: Run Tests
+    - name: Test
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --abort-on-container-exit --exit-code-from ci ci
     - name: Cleanup
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml down -v
