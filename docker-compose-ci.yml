@@ -4,6 +4,10 @@ services:
     build:
       context: ${DOCKER_FRONT_ROOT:-.}
       target: ci
+    networks:
+      skeleton:
+    depends_on:
+      - micro
     volumes:
       - ${DOCKER_ROOT:-.}:/node:delegated
       - ci_node_modules:/node/node_modules

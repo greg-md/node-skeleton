@@ -15,8 +15,8 @@ describe('MicroController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(microController.getHello()).toBe('Hello World!');
+    it('should return "Hello World from Micro!"', () => {
+      expect(microController.hello()).toBe('Hello World from Micro!');
     });
   });
 });

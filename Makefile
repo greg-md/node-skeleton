@@ -4,6 +4,8 @@ upp:
 	docker-compose up --build
 api:
 	docker-compose exec api bash
+micro:
+	docker-compose exec micro bash
 stop:
 	docker-compose stop
 down:
@@ -14,5 +16,7 @@ pull:
 	docker-compose pull
 build:
 	docker-compose build
+cidown:
+	docker-compose -f docker-compose.yml -f docker-compose-ci.yml down --rmi=local -v
 ci:
-	docker-compose up --build --abort-on-container-exit --exit-code-from api
+	docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --build --abort-on-container-exit --exit-code-from ci ci

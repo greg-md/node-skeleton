@@ -76,10 +76,6 @@ CMD ["node", "main"]
 
 FROM production AS prod-micro
 
-ARG PORT=3001
-ENV PORT $PORT
-EXPOSE $PORT
-
 WORKDIR /node/micro
 COPY --from=production-build /node/dist/apps/micro .
 RUN chown -R node:node /node/micro

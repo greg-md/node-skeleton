@@ -1,12 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
+import { EventPattern, MessagePattern } from '@nestjs/microservices';
 import { MicroService } from './micro.service';
 
 @Controller()
 export class MicroController {
   constructor(private readonly microService: MicroService) {}
 
-  @Get()
-  getHello(): string {
+  @MessagePattern({ cmd: 'hello' })
+  hello(): string {
     return this.microService.getHello();
+  }
+
+  @EventPattern('hello_sent')
+  async handleHelloSent(data: Record<string, unknown>) {
+    console.log('Hello event received.', data);
   }
 }
