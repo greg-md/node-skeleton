@@ -11,7 +11,7 @@ async function bootstrap() {
         url: 'nats://nats:4222',
         queue: 'micro_queue',
       },
-    }
+    },
   );
 
   await app.listenAsync();

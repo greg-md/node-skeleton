@@ -33,8 +33,16 @@ describe('AppController', () => {
   describe('root', () => {
     it('should return "Hello World!"', async () => {
       const result = 'hello';
-      clientProxyMock.expects('send').once().withExactArgs({ cmd: 'hello' }, {}).returns(of(result));
-      clientProxyMock.expects('emit').once().withExactArgs('hello_sent', result).returns(of(true));
+      clientProxyMock
+        .expects('send')
+        .once()
+        .withExactArgs({ cmd: 'hello' }, {})
+        .returns(of(result));
+      clientProxyMock
+        .expects('emit')
+        .once()
+        .withExactArgs('hello_sent', result)
+        .returns(of(true));
 
       expect(await appController.getHello()).toBe('Hello World!');
       clientProxyMock.verify();
