@@ -6,11 +6,11 @@ RUN npm i -g npm@latest
 
 RUN npm i -g @nestjs/cli
 
-RUN mkdir -p /node /node/dist /node/coverage
+# RUN mkdir -p /node /node/dist /node/coverage
 
-RUN chown -R node:node /node
+# RUN chown -R node:node /node
 
-USER node
+# USER node
 
 WORKDIR /node
 COPY package*.json ./
