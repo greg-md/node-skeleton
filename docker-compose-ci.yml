@@ -13,7 +13,7 @@ services:
     depends_on:
       - micro
     volumes:
-      - ${DOCKER_ROOT:-.}:/node:delegated
+      - ${DOCKER_ROOT:-.}:/node:Z
       - ci_node_modules:/node/node_modules
       - ci_dist:/node/dist
 volumes:
