@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-chown -R $USER /node
+mkdir -p /node/dist
 
 ./scripts/wait-for-it.sh nats:4222 -s -t 0 -- \
 npm run start
