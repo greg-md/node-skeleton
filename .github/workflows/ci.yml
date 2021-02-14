@@ -23,16 +23,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Pull
-      run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
-    - name: Build
-      run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
-    - name: Test
-      uses: paambaati/codeclimate-action@v2.7.5
+    - run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
+    - uses: satackey/action-docker-layer-caching@v0.0.11
+      continue-on-error: true
+    - run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
+    - uses: paambaati/codeclimate-action@v2.7.5
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
         coverageCommand: docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --abort-on-container-exit --exit-code-from ci
         coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
-    - name: Cleanup
-      run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml down -v
+    - run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml down -v
