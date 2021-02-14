@@ -27,6 +27,8 @@ jobs:
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
     - name: Build
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
+    - name: Fix permissions
+      run: mkdir -p coverage
     - name: Test
       uses: paambaati/codeclimate-action@v2.7.5
       with:
