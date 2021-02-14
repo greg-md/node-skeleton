@@ -29,6 +29,8 @@ jobs:
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
     - name: Test
       uses: paambaati/codeclimate-action@v2.7.5
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
         coverageCommand: docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --abort-on-container-exit --exit-code-from ci
         coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
