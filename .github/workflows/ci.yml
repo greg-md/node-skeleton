@@ -34,7 +34,7 @@ jobs:
     - name: Test
       uses: paambaati/codeclimate-action@v2.7.5
       with:
-        coverageCommand: docker-compose exec api ./scripts/ci.sh && docker cp node_skeleton_api_1:/node/coverage coverage
+        coverageCommand: docker-compose exec api ./scripts/ci.sh && docker cp node-skeleton_api_1:/node/coverage coverage
         coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
-    - name: Cleanup
+    - name: Down
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml down -v
