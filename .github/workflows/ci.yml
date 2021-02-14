@@ -8,6 +8,7 @@ on:
       - '!Makefile'
       - '!README.md'
 
+
 jobs:
   linter:
     name: Linter
