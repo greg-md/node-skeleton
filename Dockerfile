@@ -6,6 +6,7 @@ RUN npm i -g npm@latest
 
 RUN npm i -g @nestjs/cli
 
+WORKDIR /node
 COPY package*.json ./
 ENV PATH ./node_modules/.bin:$PATH
 
