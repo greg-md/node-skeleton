@@ -17,7 +17,7 @@ pull:
 build:
 	docker-compose build
 cid:
-	docker-compose -f docker-compose.yml -f docker-compose-ci.yml down --rmi=local -v
+	docker-compose -f docker-compose.yml -f docker-compose-ci.yml down -v
 cib:
 	docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
 ci:

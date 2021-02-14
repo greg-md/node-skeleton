@@ -28,10 +28,10 @@ jobs:
     - name: Build
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
     - name: Test
-      run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --abort-on-container-exit --exit-code-from ci
-    - name: Stop
-      run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml down -v
-    - uses: paambaati/codeclimate-action@v2.7.5
+      uses: paambaati/codeclimate-action@v2.7.5
       with:
+        coverageCommand: docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --abort-on-container-exit --exit-code-from ci
         coverageLocations: |
           ${{github.workspace}}/coverage/lcov.info:lcov
+    - name: Cleanup
+      run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml down -v
