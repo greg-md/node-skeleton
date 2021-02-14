@@ -6,10 +6,8 @@ RUN npm i -g npm@latest
 
 RUN npm i -g @nestjs/cli
 
-RUN echo $GITHUB_WORKSPACE;
-
 COPY package*.json ./
-ENV PATH $GITHUB_WORKSPACE/node_modules/.bin:$PATH
+ENV PATH ./node_modules/.bin:$PATH
 
 FROM builder AS development
 
