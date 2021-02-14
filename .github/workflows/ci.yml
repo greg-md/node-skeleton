@@ -29,5 +29,8 @@ jobs:
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
     - name: Test
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --abort-on-container-exit --exit-code-from ci
+    - uses: paambaati/codeclimate-action@v2.7.5
+      env:
+        CC_TEST_REPORTER_ID: secrets.CC_TEST_REPORTER_ID
     - name: Cleanup
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml down -v
