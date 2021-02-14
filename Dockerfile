@@ -11,6 +11,8 @@ FROM builder AS development
 ARG NODE_ENV=development
 ENV NODE_ENV $NODE_ENV
 
+RUN mkdir -p /node/dist
+
 WORKDIR /node
 COPY package*.json ./
 RUN npm ci && npm cache clean --force
