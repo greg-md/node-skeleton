@@ -18,7 +18,5 @@ build:
 	docker-compose build
 cid:
 	docker-compose -f docker-compose.yml -f docker-compose-ci.yml down --rmi=local -v
-cib:
-	docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
 ci:
-	docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --abort-on-container-exit --exit-code-from ci
+	docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --build --abort-on-container-exit --exit-code-from ci
