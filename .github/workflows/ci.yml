@@ -9,8 +9,8 @@ on:
       - '!README.md'
 
 jobs:
-  code_style:
-    name: Code Style
+  linter:
+    name: Linter
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -31,7 +31,6 @@ jobs:
       uses: paambaati/codeclimate-action@v2.7.5
       with:
         coverageCommand: docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --abort-on-container-exit --exit-code-from ci
-        coverageLocations: |
-          ${{github.workspace}}/coverage/lcov.info:lcov
+        coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
     - name: Cleanup
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml down -v
