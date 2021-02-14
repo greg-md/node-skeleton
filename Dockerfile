@@ -6,11 +6,6 @@ RUN npm i -g npm@latest
 
 RUN npm i -g @nestjs/cli
 
-FROM builder AS development
-
-ARG NODE_ENV=development
-ENV NODE_ENV $NODE_ENV
-
 RUN mkdir -p /node
 RUN mkdir -p /node/dist
 RUN mkdir -p /node/coverage
@@ -21,8 +16,14 @@ USER node
 
 WORKDIR /node
 COPY package*.json ./
-RUN npm ci && npm cache clean --force
 ENV PATH /node/node_modules/.bin:$PATH
+
+FROM builder AS development
+
+ARG NODE_ENV=development
+ENV NODE_ENV $NODE_ENV
+
+RUN npm ci && npm cache clean --force
 
 COPY . .
 
@@ -53,10 +54,7 @@ FROM builder AS prod-builder
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
 
-WORKDIR /node
-COPY package*.json ./
 RUN npm ci && npm cache clean --force
-ENV PATH /node/node_modules/.bin:$PATH
 
 COPY . .
 
