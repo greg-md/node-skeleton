@@ -33,7 +33,6 @@ services:
   nats:
     image: nats
     ports:
-      - "4222:4222"
       - "8222:8222"
     networks:
       skeleton:
