@@ -21,7 +21,7 @@ jobs:
       with:
         path: ~/.docker
         key: ${{ runner.os }}-docker
-    - run: docker load -i ~/.docker/images*.tar
+    - run: test -f ~/.docker/images.tar && docker load -i ~/.docker/images.tar
     - run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
     # - uses: satackey/action-docker-layer-caching@v0.0.11
     #   continue-on-error: true
