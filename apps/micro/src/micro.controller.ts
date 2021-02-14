@@ -8,7 +8,6 @@ export class MicroController {
 
   @MessagePattern({ cmd: 'hello' })
   hello(): string {
-    console.log('Hello command received.');
     return this.microService.getHello();
   }
 
