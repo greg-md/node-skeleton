@@ -6,13 +6,10 @@ RUN npm i -g npm@latest
 
 RUN npm i -g @nestjs/cli
 
-RUN mkdir -p /node /node/dist /node/coverage
-RUN chown -R node:node /node
-USER node:node
+RUN echo $GITHUB_WORKSPACE;
 
-WORKDIR /node
 COPY package*.json ./
-ENV PATH /node/node_modules/.bin:$PATH
+ENV PATH $GITHUB_WORKSPACE/node_modules/.bin:$PATH
 
 FROM builder AS development
 

@@ -24,17 +24,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Pull
-      run: docker-compose pull
+      run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
     - name: Build
-      run: docker-compose build
-    - name: Up
-      run: docker-compose up -d
-    - name: PS
-      run: docker ps
+      run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
     - name: Test
       uses: paambaati/codeclimate-action@v2.7.5
       with:
-        coverageCommand: docker-compose exec -T api ./scripts/ci.sh && docker cp node-skeleton_api_1:/node/coverage coverage
+        coverageCommand: docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --abort-on-container-exit --exit-code-from ci
         coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
-    - name: Down
+    - name: Cleanup
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml down -v
