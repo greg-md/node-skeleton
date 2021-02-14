@@ -11,12 +11,19 @@ FROM builder AS development
 ARG NODE_ENV=development
 ENV NODE_ENV $NODE_ENV
 
+RUN mkdir -p /node
+RUN mkdir -p /node/dist
+
 WORKDIR /node
 COPY package*.json ./
 RUN npm ci && npm cache clean --force
 ENV PATH /node/node_modules/.bin:$PATH
 
 COPY . .
+
+RUN chown -R node:node /node
+RUN chown -R node:node /node/dist
+USER node
 
 COPY ./scripts/docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
@@ -27,13 +34,9 @@ ARG PORT=3000
 ENV PORT $PORT
 EXPOSE $PORT
 
-RUN mkdir -p /node/dist
-
 CMD ["./scripts/dev-api.sh"]
 
 FROM development AS dev-micro
-
-RUN mkdir -p /node/dist
 
 CMD ["./scripts/dev-micro.sh"]
 
