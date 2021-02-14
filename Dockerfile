@@ -8,7 +8,7 @@ RUN npm i -g @nestjs/cli
 
 WORKDIR /node
 COPY package*.json ./
-ENV PATH ./node_modules/.bin:$PATH
+ENV PATH /node/node_modules/.bin:$PATH
 
 FROM builder AS development
 
