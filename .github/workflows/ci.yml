@@ -23,6 +23,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Cache Docker Images
+      uses: actions/cache@v2
+      with:
+        path: /var/lib/docker/overlay2
+        key: ${{ runner.os }}-docker-images
     - name: Pull
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
     - name: Build
