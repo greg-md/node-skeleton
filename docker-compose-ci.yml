@@ -1,5 +1,9 @@
 version: '3.7'
 services:
+  api:
+    command: ./scripts/ci-api.sh
+  micro:
+    command: ./scripts/ci-micro.sh
   ci:
     build:
       context: ${DOCKER_FRONT_ROOT:-.}
