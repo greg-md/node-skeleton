@@ -13,7 +13,6 @@ services:
     volumes:
       - ${DOCKER_ROOT:-.}:/node:delegated
       - api_node_modules:/node/node_modules
-      - api_dist:/node/dist
     ports:
       - "3000:3000"
   micro:
@@ -29,7 +28,6 @@ services:
     volumes:
       - ${DOCKER_ROOT:-.}:/node:delegated
       - micro_node_modules:/node/node_modules
-      - micro_dist:/node/dist
   nats:
     image: nats
     ports:
@@ -52,8 +50,6 @@ services:
       - nats
 volumes:
   api_node_modules:
-  api_dist:
   micro_node_modules:
-  micro_dist:
 networks:
   skeleton:
