@@ -8,16 +8,15 @@ RUN npm i -g @nestjs/cli
 
 WORKDIR /node
 COPY package*.json ./
+RUN npm ci && npm cache clean --force
 ENV PATH /node/node_modules/.bin:$PATH
+
+COPY . .
 
 FROM builder AS development
 
 ARG NODE_ENV=development
 ENV NODE_ENV $NODE_ENV
-
-RUN npm ci && npm cache clean --force
-
-COPY . .
 
 COPY ./scripts/docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
@@ -46,10 +45,6 @@ FROM builder AS prod-builder
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
 
-RUN npm ci && npm cache clean --force
-
-COPY . .
-
 RUN npm run build api
 RUN npm run build micro
 
@@ -73,7 +68,7 @@ ENV PORT $PORT
 EXPOSE $PORT
 
 WORKDIR /node/api
-COPY --from=production-build /node/dist/apps/api .
+COPY --from=prod-builder /node/dist/apps/api .
 RUN chown -R node:node /node/api
 USER node
 
@@ -82,7 +77,7 @@ CMD ["node", "main"]
 FROM production AS prod-micro
 
 WORKDIR /node/micro
-COPY --from=production-build /node/dist/apps/micro .
+COPY --from=prod-builder /node/dist/apps/micro .
 RUN chown -R node:node /node/micro
 USER node
 
