@@ -23,6 +23,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: List before
+      run: ls -all
+    - name: Chown
+      run: chown -R 1001:116 .
+    - name: List after
+      run: ls -all
     - name: Pull
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
     - name: Build
