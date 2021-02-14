@@ -8,8 +8,6 @@ services:
       skeleton:
     depends_on:
       - micro
-      - nats-1
-      - nats-2
     volumes:
       - ${DOCKER_ROOT:-.}:/node:delegated
       - ci_node_modules:/node/node_modules
