@@ -18,11 +18,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
-    - uses: whoan/docker-build-with-cache-action@v5
-      with:
-        compose_file: docker-compose.yml > docker-compose-ci.yml
-        pull_image_and_stages: false
-        push_image_and_stages: false
     # - uses: satackey/action-docker-layer-caching@v0.0.11
     #   continue-on-error: true
     - run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
