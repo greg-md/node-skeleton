@@ -27,9 +27,13 @@ ARG PORT=3000
 ENV PORT $PORT
 EXPOSE $PORT
 
+RUN mkdir -p /node/dist
+
 CMD ["./scripts/dev-api.sh"]
 
 FROM development AS dev-micro
+
+RUN mkdir -p /node/dist
 
 CMD ["./scripts/dev-micro.sh"]
 
