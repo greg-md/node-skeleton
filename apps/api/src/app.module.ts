@@ -11,7 +11,7 @@ import { AppService } from './app.service';
         transport: Transport.NATS,
         options: {
           url: 'nats://nats:4222',
-          // queue: 'micro_queue',
+          queue: 'micro_queue',
         },
       },
     ]),
