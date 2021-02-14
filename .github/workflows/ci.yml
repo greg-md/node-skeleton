@@ -23,12 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: LS
-      run: ls -all
-    - name: Create folders
-      run: mkdir -p dist coverage
-    - name: LS 2
-      run: ls -all
     - name: Pull
       run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
     - name: Build
