@@ -10,6 +10,13 @@ chmod -R 777 /node/dist /node/coverage
 
 ls -all
 
+echo $USER
+echo $GROUP
+
+chown -R 1001:116 /node/dist /node/coverage
+
+ls -all
+
 npm run test:cov
 
 ./scripts/wait-for-it.sh api:3000 -s -t 0 -- \
