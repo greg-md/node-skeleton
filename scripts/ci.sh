@@ -10,6 +10,7 @@ chmod -R 777 /node/dist /node/coverage
 
 ls -all
 
+echo "USER GROUP"
 echo $USER
 echo $GROUP
 
