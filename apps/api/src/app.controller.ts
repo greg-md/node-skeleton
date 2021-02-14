@@ -14,7 +14,7 @@ export class AppController {
   async getHello(): Promise<string> {
     const result = await this.client
       .send<number>({ cmd: 'hello' }, {})
-      .pipe(timeout(5000))
+      .pipe(timeout(60000))
       .toPromise();
 
     await this.client.emit<number>('hello_sent', result).toPromise();
