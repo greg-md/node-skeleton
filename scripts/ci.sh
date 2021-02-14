@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-echo "GITHUB_WORKSPACE:"
+echo "pwd:"
 
-echo $GITHUB_WORKSPACE
+pwd
 
 npm run test:cov
 
