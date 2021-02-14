@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 
+ls -all
+
 mkdir -p /node /node/dist /node/coverage
 
+ls -all
+
 chmod -R 777 /node/dist /node/coverage
+
+ls -all
 
 npm run test:cov
 
