@@ -16,6 +16,8 @@ services:
       - ${DOCKER_ROOT:-.}:/node:delegated
       - ci_node_modules:/node/node_modules
       - ci_dist:/node/dist
+      - ci_coverage:/node/coverage
 volumes:
   ci_node_modules:
   ci_dist:
+  ci_coverage:
