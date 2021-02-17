@@ -13,3 +13,31 @@
 - `npm i --save @nestjs/microservices`
 - `npm i --save nats`
 - `npm install sinon`
+
+## Build & Deploy
+
+### Build
+
+To use an image without uploading it, reuse the docker deamon to build the image:
+```bash
+eval $(minikube docker-env)
+```
+
+- `docker build -t skeleton/api --target prod-api .`
+- `docker build -t skeleton/micro --target prod-micro .`
+
+### Deploy
+- `helm install skeleton ./workflow`
+
+### Destroy
+
+- `helm uninstall skeleton ./workflow`
+
+## Debug
+
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+Listen for pod logs:
+```bash
+kubectl logs -f -l app=api --all-containers
+```

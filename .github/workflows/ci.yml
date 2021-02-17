@@ -18,6 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
+    # It takes more time to cache/restore data on small builds
     # - uses: satackey/action-docker-layer-caching@v0.0.11
     #   continue-on-error: true
     - run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml build

@@ -4,8 +4,6 @@ RUN apt-get update
 
 RUN npm i -g npm@latest
 
-RUN npm i -g @nestjs/cli
-
 WORKDIR /node
 COPY package*.json ./
 RUN npm ci && npm cache clean --force
@@ -17,9 +15,6 @@ FROM builder AS development
 
 ARG NODE_ENV=development
 ENV NODE_ENV $NODE_ENV
-
-COPY ./scripts/docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
 
 FROM development AS dev-api
 
@@ -45,8 +40,7 @@ FROM builder AS prod-builder
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
 
-RUN npm run build api
-RUN npm run build micro
+RUN npm run build
 
 FROM node:14-alpine AS production
 
@@ -55,11 +49,11 @@ RUN apk update && apk add --no-cache bash
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
 
-COPY ./scripts/docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
+WORKDIR /node
+COPY package*.json ./
+RUN npm ci --production && npm cache clean --force
 
-COPY ./scripts/healthcheck.js /healthcheck.js
-HEALTHCHECK --interval=30s CMD node /healthcheck.js
+CMD ["node", "main"]
 
 FROM production AS prod-api
 
@@ -72,13 +66,9 @@ COPY --from=prod-builder /node/dist/apps/api .
 RUN chown -R node:node /node/api
 USER node
 
-CMD ["node", "main"]
-
 FROM production AS prod-micro
 
 WORKDIR /node/micro
 COPY --from=prod-builder /node/dist/apps/micro .
 RUN chown -R node:node /node/micro
 USER node
-
-CMD ["node", "main"]

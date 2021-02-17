@@ -1,0 +1,4 @@
+api:
+  image: skeleton/api
+  pullPolicy: Never # Always in production
+
