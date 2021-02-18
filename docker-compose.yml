@@ -8,6 +8,7 @@ services:
       - ${DOCKER_ROOT:-.}/.env
     depends_on:
       - nats
+      - micro
     networks:
       skeleton:
     volumes:
@@ -28,6 +29,20 @@ services:
     volumes:
       - ${DOCKER_ROOT:-.}:/node:delegated
       - micro_node_modules:/node/node_modules
+  ci:
+    build:
+      context: ${DOCKER_FRONT_ROOT:-.}
+      target: ci
+    networks:
+      skeleton:
+    depends_on:
+      - api
+      - micro
+    environment:
+      - CI_ENV=$CI_ENV
+    volumes:
+      - ${DOCKER_ROOT:-.}:/node:delegated
+      - ci_node_modules:/node/node_modules
   nats:
     image: nats
     ports:
@@ -51,5 +66,6 @@ services:
 volumes:
   api_node_modules:
   micro_node_modules:
+  ci_node_modules:
 networks:
   skeleton:

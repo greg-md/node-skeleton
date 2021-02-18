@@ -1,6 +1,6 @@
 FROM node:14 AS builder
 
-RUN apt-get update
+# RUN apt-get update
 
 RUN npm i -g npm@latest
 
@@ -28,7 +28,7 @@ FROM development AS dev-micro
 
 CMD ["./scripts/dev-micro.sh"]
 
-FROM development AS ci
+FROM builder AS ci
 
 ARG NODE_ENV=ci
 ENV NODE_ENV $NODE_ENV
@@ -44,7 +44,7 @@ RUN npm run build
 
 FROM node:14-alpine AS production
 
-RUN apk update && apk add --no-cache bash
+# RUN apk update && apk add --no-cache bash
 
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV

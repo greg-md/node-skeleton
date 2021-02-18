@@ -17,15 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml pull
+    - run: docker-compose pull
     # It takes more time to cache/restore data on small builds
     # - uses: satackey/action-docker-layer-caching@v0.0.11
     #   continue-on-error: true
-    - run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml build
-    - run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml up --abort-on-container-exit --exit-code-from ci
+    - run: docker-compose build
+    - run: CI_ENV=1 docker-compose up --abort-on-container-exit --exit-code-from ci
     - uses: paambaati/codeclimate-action@v2.7.5
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
         coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
-    - run: docker-compose -f docker-compose.yml -f docker-compose-ci.yml down -v
+    - run: docker-compose down -v
