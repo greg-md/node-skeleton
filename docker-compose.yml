@@ -33,7 +33,7 @@ services:
       - micro_node_modules:/node/node_modules
   ci:
     build:
-      context: ${DOCKER_FRONT_ROOT:-.}
+      context: ${DOCKER_ROOT:-.}
       target: development
     networks:
       skeleton:
@@ -43,7 +43,7 @@ services:
     env_file:
       - ${DOCKER_ROOT:-.}/.env
     environment:
-      - NODE_ENV=$NODE_ENV
+      - NODE_ENV=${NODE_ENV:-development}
     command: ./scripts/ci.sh
     volumes:
       - ${DOCKER_ROOT:-.}:/node:delegated
