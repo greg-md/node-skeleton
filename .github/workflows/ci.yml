@@ -22,7 +22,7 @@ jobs:
     # - uses: satackey/action-docker-layer-caching@v0.0.11
     #   continue-on-error: true
     - run: docker-compose build
-    - run: CI_ENV=1 docker-compose up --abort-on-container-exit --exit-code-from ci
+    - run: NODE_ENV=ci docker-compose up --abort-on-container-exit --exit-code-from ci
     - uses: paambaati/codeclimate-action@v2.7.5
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}

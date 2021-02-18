@@ -1,3 +1,7 @@
+pull:
+	docker-compose pull
+build:
+	docker-compose build
 up:
 	docker-compose up
 upp:
@@ -12,7 +16,5 @@ down:
 	docker-compose down -v
 rmi:
 	docker-compose down --rmi=local -v
-pull:
-	docker-compose pull
-build:
-	docker-compose build
+ci:
+	NODE_ENV=ci docker-compose up --abort-on-container-exit --exit-code-from ci

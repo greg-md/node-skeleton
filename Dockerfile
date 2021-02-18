@@ -1,4 +1,4 @@
-FROM node:14 AS builder
+FROM node:14 AS development
 
 # RUN apt-get update
 
@@ -11,36 +11,9 @@ ENV PATH /node/node_modules/.bin:$PATH
 
 COPY . .
 
-FROM builder AS development
+FROM development AS production-builder
 
-ARG NODE_ENV=development
-ENV NODE_ENV $NODE_ENV
-
-FROM development AS dev-api
-
-ARG PORT=3000
-ENV PORT $PORT
-EXPOSE $PORT
-
-CMD ["./scripts/dev-api.sh"]
-
-FROM development AS dev-micro
-
-CMD ["./scripts/dev-micro.sh"]
-
-FROM builder AS ci
-
-ARG NODE_ENV=ci
-ENV NODE_ENV $NODE_ENV
-
-CMD ["./scripts/ci.sh"]
-
-FROM builder AS prod-builder
-
-ARG NODE_ENV=production
-ENV NODE_ENV $NODE_ENV
-
-RUN npm run build
+RUN npm run build:all
 
 FROM node:14-alpine AS production
 
@@ -55,20 +28,16 @@ RUN npm ci --production && npm cache clean --force
 
 CMD ["node", "main"]
 
-FROM production AS prod-api
-
-ARG PORT=3000
-ENV PORT $PORT
-EXPOSE $PORT
+FROM production AS production-api
 
 WORKDIR /node/api
-COPY --from=prod-builder /node/dist/apps/api .
+COPY --from=production-builder /node/dist/apps/api .
 RUN chown -R node:node /node/api
 USER node
 
-FROM production AS prod-micro
+FROM production AS production-micro
 
 WORKDIR /node/micro
-COPY --from=prod-builder /node/dist/apps/micro .
+COPY --from=production-builder /node/dist/apps/micro .
 RUN chown -R node:node /node/micro
 USER node

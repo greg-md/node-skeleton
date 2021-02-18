@@ -3,14 +3,15 @@ services:
   api:
     build:
       context: ${DOCKER_ROOT:-.}
-      target: dev-api
-    env_file:
-      - ${DOCKER_ROOT:-.}/.env
+      target: development
+    networks:
+      skeleton:
     depends_on:
       - nats
       - micro
-    networks:
-      skeleton:
+    env_file:
+      - ${DOCKER_ROOT:-.}/.env
+    command: ./scripts/api.sh
     volumes:
       - ${DOCKER_ROOT:-.}:/node:delegated
       - api_node_modules:/node/node_modules
@@ -19,27 +20,31 @@ services:
   micro:
     build:
       context: ${DOCKER_ROOT:-.}
-      target: dev-micro
-    env_file:
-      - ${DOCKER_ROOT:-.}/.env
-    depends_on:
-      - nats
+      target: development
     networks:
       skeleton:
+    depends_on:
+      - nats
+    env_file:
+      - ${DOCKER_ROOT:-.}/.env
+    command: ./scripts/micro.sh
     volumes:
       - ${DOCKER_ROOT:-.}:/node:delegated
       - micro_node_modules:/node/node_modules
   ci:
     build:
       context: ${DOCKER_FRONT_ROOT:-.}
-      target: ci
+      target: development
     networks:
       skeleton:
     depends_on:
       - api
       - micro
+    env_file:
+      - ${DOCKER_ROOT:-.}/.env
     environment:
-      - CI_ENV=$CI_ENV
+      - NODE_ENV=$NODE_ENV
+    command: ./scripts/ci.sh
     volumes:
       - ${DOCKER_ROOT:-.}:/node:delegated
       - ci_node_modules:/node/node_modules
