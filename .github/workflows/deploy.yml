@@ -1,9 +1,10 @@
 on:
   workflow_dispatch:
-    build:
-      description: 'Build number'
-      required: true
-      default: 'latest'
+    inputs:
+      build:
+        description: 'Build number'
+        required: true
+        default: 'latest'
 name: Deploy
 jobs:
   deploy:
