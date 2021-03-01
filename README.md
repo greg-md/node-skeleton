@@ -39,6 +39,11 @@ Install services:
 helm install skeleton ./workflow
 ```
 
+Upgrade services:
+```sh
+helm upgrade skeleton ./workflow
+```
+
 Open API:
 ```sh
 minikube service api-service
