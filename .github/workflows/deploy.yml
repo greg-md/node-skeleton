@@ -1,3 +1,4 @@
+name: Deploy
 on:
   workflow_dispatch:
     inputs:
@@ -5,7 +6,6 @@ on:
         description: 'Build number'
         required: true
         default: 'latest'
-name: Deploy
 jobs:
   deploy:
     name: Deploy to cluster
