@@ -1,7 +1,5 @@
-name: CI
-
 on: push
-
+name: CI
 jobs:
   linter:
     name: Linter
