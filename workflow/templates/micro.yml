@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micro-deployment
+  labels:
+    app: micro
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: micro
+  template:
+    metadata:
+      labels:
+        app: micro
+    spec:
+      containers:
+      - name: micro
+        image: {{ .Values.micro.image }}
+        imagePullPolicy: {{ .Values.micro.pullPolicy }}
+        env:
+          - name: NATS_URL
+            value: "nats://nats:4222"

@@ -1,4 +1,7 @@
 api:
   image: skeleton/api
-  pullPolicy: Never # Always in production
+  pullPolicy: IfNotPresent
 
+micro:
+  image: skeleton/micro
+  pullPolicy: IfNotPresent

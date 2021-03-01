@@ -23,15 +23,31 @@ To use an image without uploading it, reuse the docker deamon to build the image
 eval $(minikube docker-env)
 ```
 
-- `docker build -t skeleton/api --target prod-api .`
-- `docker build -t skeleton/micro --target prod-micro .`
+- `docker build -t skeleton/api --target production-api .`
+- `docker build -t skeleton/micro --target production-micro .`
 
 ### Deploy
-- `helm install skeleton ./workflow`
+
+Install NATS if not already installed:
+```sh
+helm repo add nats https://nats-io.github.io/k8s/helm/charts/
+helm install nats nats/nats
+```
+
+Install services:
+```sh
+helm install skeleton ./workflow
+```
+
+Open API:
+```sh
+minikube service api-service
+```
 
 ### Destroy
 
-- `helm uninstall skeleton ./workflow`
+- `helm uninstall skeleton`
+- `helm uninstall nats`
 
 ## Debug
 
