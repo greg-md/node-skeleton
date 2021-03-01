@@ -27,9 +27,7 @@ jobs:
         IMAGE_TAG: ${{ github.run_number }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_API_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_API_REPOSITORY:latest --target production-api .
-        docker push $ECR_REGISTRY/$ECR_API_REPOSITORY:$IMAGE_TAG
-        docker push $ECR_REGISTRY/$ECR_API_REPOSITORY:latest
+        docker push --all-tags $ECR_REGISTRY/$ECR_API_REPOSITORY
 
         docker build -t $ECR_REGISTRY/$ECR_MICRO_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_MICRO_REPOSITORY:latest --target production-micro .
-        docker push $ECR_REGISTRY/$ECR_MICRO_REPOSITORY:$IMAGE_TAG
-        docker push $ECR_REGISTRY/$ECR_MICRO_REPOSITORY:latest
+        docker push --all-tags $ECR_REGISTRY/$ECR_MICRO_REPOSITORY
