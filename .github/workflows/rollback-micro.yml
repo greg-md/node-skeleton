@@ -1,4 +1,4 @@
-name: Rollback
+name: Rollback Micro
 on:
   workflow_dispatch:
     inputs:
@@ -6,7 +6,7 @@ on:
         description: 'Revision number'
 jobs:
   rollback:
-    name: Rollback in AWS EKS
+    name: Rollback
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -25,4 +25,4 @@ jobs:
         REVISION: ${{ github.event.inputs.revision }}
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
-        command: helm rollback skeleton $REVISION --wait
+        command: helm rollback micro $REVISION --wait

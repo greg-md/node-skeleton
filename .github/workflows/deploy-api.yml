@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Api
 on:
   workflow_dispatch:
     inputs:
@@ -8,7 +8,7 @@ on:
         default: 'latest'
 jobs:
   deploy:
-    name: Deploy to AWS EKS
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -29,9 +29,8 @@ jobs:
       uses: koslib/helm-eks-action@master
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_API_REPOSITORY: skeleton/api
-        ECR_MICRO_REPOSITORY: skeleton/micro
+        ECR_REPOSITORY: skeleton/api
         IMAGE_TAG: ${{ github.event.inputs.build }}
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
-        command: helm upgrade skeleton ./workflow --install --wait --set api.image=$ECR_REGISTRY/$ECR_API_REPOSITORY:$IMAGE_TAG --set micro.image=$ECR_REGISTRY/$ECR_MICRO_REPOSITORY:$IMAGE_TAG
+        command: helm upgrade api ./build-deploy/helm/api --install --wait --set image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
