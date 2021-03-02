@@ -11,9 +11,13 @@ ENV PATH /node/node_modules/.bin:$PATH
 
 COPY . .
 
-FROM development AS production-builder
+FROM development AS production-builder-api
 
-RUN npm run build:all
+RUN npm run build api
+
+FROM development AS production-builder-micro
+
+RUN npm run build micro
 
 FROM node:14-alpine AS production
 
@@ -31,13 +35,13 @@ CMD ["node", "main"]
 FROM production AS production-api
 
 WORKDIR /node/api
-COPY --from=production-builder /node/dist/apps/api .
+COPY --from=production-builder-api /node/dist/apps/api .
 RUN chown -R node:node /node/api
 USER node
 
 FROM production AS production-micro
 
 WORKDIR /node/micro
-COPY --from=production-builder /node/dist/apps/micro .
+COPY --from=production-builder-micro /node/dist/apps/micro .
 RUN chown -R node:node /node/micro
 USER node
