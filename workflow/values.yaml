@@ -1,7 +1,0 @@
-api:
-  image: skeleton/api
-  pullPolicy: IfNotPresent
-
-micro:
-  image: skeleton/micro
-  pullPolicy: IfNotPresent

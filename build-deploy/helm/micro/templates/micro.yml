@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: micro
-        image: {{ .Values.micro.image }}
-        imagePullPolicy: {{ .Values.micro.pullPolicy }}
+        image: {{ .Values.image }}
+        imagePullPolicy: {{ .Values.pullPolicy }}
         env:
           - name: NATS_URL
             value: "nats://nats:4222"

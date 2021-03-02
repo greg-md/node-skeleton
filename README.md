@@ -16,6 +16,27 @@
 
 ## Build & Deploy
 
+Pre Requirements:
+```
+brew tap weaveworks/tap
+brew install weaveworks/tap/eksctl
+```
+
+Create AWS Cluster:
+```
+eksctl create cluster \
+--name skeleton \
+--version 1.19 \
+--region eu-central-1 \
+--nodegroup-name skeleton-nodes \
+--node-type t3.small \
+--nodes-min 2 \
+--nodes-max 4 \
+--auto-kubeconfig
+```
+
+Use `--kubeconfig ~/.kube/eksctl/clusters/skeleton` flag to work with AWS EKS with kubectl or helm.
+
 ### Build
 
 To use an image without uploading it, reuse the docker deamon to build the image:
@@ -28,25 +49,24 @@ eval $(minikube docker-env)
 
 ### Deploy
 
-Create kubeconfig:
-```
-aws eks --region eu-central-1 update-kubeconfig --name skeleton --kubeconfig ~/.kube/aws-config
-```
-
 Install NATS if not already installed:
 ```sh
 helm repo add nats https://nats-io.github.io/k8s/helm/charts/
 helm install nats nats/nats
+# or
+helm install nats ./build-deploy/helm/nats
 ```
 
 Install services:
 ```sh
-helm install skeleton ./workflow
+helm install api ./build-deploy/helm/api
+helm install micro ./build-deploy/helm/micro
 ```
 
 Upgrade services:
 ```sh
-helm upgrade skeleton ./workflow
+helm upgrade api ./build-deploy/helm/api
+helm upgrade micro ./build-deploy/helm/micro
 ```
 
 Open API:
@@ -56,8 +76,16 @@ minikube service api-service
 
 ### Destroy
 
-- `helm uninstall skeleton`
-- `helm uninstall nats`
+```sh
+helm uninstall api
+helm uninstall micro
+helm uninstall nats
+```
+
+Destroy AWS EKS Cluster:
+```sh
+eksctl delete cluster --name skeleton
+```
 
 ## Debug
 

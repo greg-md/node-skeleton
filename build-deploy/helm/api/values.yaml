@@ -1,0 +1,2 @@
+image: skeleton/api
+pullPolicy: IfNotPresent

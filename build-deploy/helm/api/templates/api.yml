@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: api
-        image: {{ .Values.api.image }}
-        imagePullPolicy: {{ .Values.api.pullPolicy }}
+        image: {{ .Values.image }}
+        imagePullPolicy: {{ .Values.pullPolicy }}
         ports:
           - containerPort: 3000
         env:

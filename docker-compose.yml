@@ -11,7 +11,7 @@ services:
       - micro
     env_file:
       - ${DOCKER_ROOT:-.}/.env
-    command: ./scripts/api.sh
+    command: ./build-deploy/api.sh
     volumes:
       - ${DOCKER_ROOT:-.}:/node:delegated
       - api_node_modules:/node/node_modules
@@ -27,7 +27,7 @@ services:
       - nats
     env_file:
       - ${DOCKER_ROOT:-.}/.env
-    command: ./scripts/micro.sh
+    command: ./build-deploy/micro.sh
     volumes:
       - ${DOCKER_ROOT:-.}:/node:delegated
       - micro_node_modules:/node/node_modules
@@ -44,7 +44,7 @@ services:
       - ${DOCKER_ROOT:-.}/.env
     environment:
       - NODE_ENV=${NODE_ENV:-development}
-    command: ./scripts/ci.sh
+    command: ./build-deploy/ci.sh
     volumes:
       - ${DOCKER_ROOT:-.}:/node:delegated
       - ci_node_modules:/node/node_modules
