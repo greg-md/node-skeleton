@@ -28,6 +28,11 @@ eval $(minikube docker-env)
 
 ### Deploy
 
+Create kubeconfig:
+```
+aws eks --region eu-central-1 update-kubeconfig --name skeleton --kubeconfig ~/.kube/aws-config
+```
+
 Install NATS if not already installed:
 ```sh
 helm repo add nats https://nats-io.github.io/k8s/helm/charts/

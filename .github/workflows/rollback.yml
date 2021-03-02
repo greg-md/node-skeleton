@@ -1,0 +1,28 @@
+name: Rollback
+on:
+  workflow_dispatch:
+    inputs:
+      revision:
+        description: 'Revision number'
+jobs:
+  rollback:
+    name: Rollback in AWS EKS
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-central-1
+
+    - name: Helm rollback in AWS EKS
+      uses: koslib/helm-eks-action@master
+      env:
+        REVISION: ${{ github.event.inputs.revision }}
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+      with:
+        command: helm rollback skeleton $REVISION --wait

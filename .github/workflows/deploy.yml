@@ -8,7 +8,7 @@ on:
         default: 'latest'
 jobs:
   deploy:
-    name: Deploy to cluster
+    name: Deploy to AWS EKS
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -25,7 +25,7 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Helm deploy to AWS
+    - name: Helm deploy to AWS EKS
       uses: koslib/helm-eks-action@master
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
