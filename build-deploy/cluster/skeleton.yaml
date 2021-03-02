@@ -4,7 +4,7 @@ kind: ClusterConfig
 metadata:
   name: skeleton
   region: eu-central-1
-  version: 1.19
+  version: "1.19"
 
 nodeGroups:
   - name: skeleton-nodes
