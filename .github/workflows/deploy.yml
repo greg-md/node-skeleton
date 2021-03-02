@@ -34,4 +34,4 @@ jobs:
         IMAGE_TAG: ${{ github.event.inputs.build }}
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
-        command: helm upgrade skeleton --install --wait --set api.image=$ECR_REGISTRY/$ECR_API_REPOSITORY:$IMAGE_TAG --set micro.image=$ECR_REGISTRY/$ECR_MICRO_REPOSITORY:$IMAGE_TAG
+        command: helm upgrade skeleton ./workflow --install --wait --set api.image=$ECR_REGISTRY/$ECR_API_REPOSITORY:$IMAGE_TAG --set micro.image=$ECR_REGISTRY/$ECR_MICRO_REPOSITORY:$IMAGE_TAG
