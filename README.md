@@ -44,7 +44,7 @@ eksctl scale nodegroup --cluster=skeleton --nodes=4 --name=skeleton-nodes
 ```
 
 Tip:
-> Use `--kubeconfig ~/.kube/eksctl/clusters/skeleton` flag to work with AWS EKS with `kubectl` or `helm`.
+> Use `--kubeconfig ~/.kube/eksctl/clusters/skeleton` flag to use AWS EKS with `kubectl` or `helm`.
 
 ### Build
 
