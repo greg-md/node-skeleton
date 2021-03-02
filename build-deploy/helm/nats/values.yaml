@@ -1,2 +1,3 @@
-cluster:
-  enabled: true
+nats:
+  cluster:
+    enabled: true

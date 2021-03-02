@@ -94,4 +94,5 @@ https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 Listen for pod logs:
 ```bash
 kubectl logs -f -l app=api --all-containers
+kubectl logs -f -l app=micro --all-containers
 ```
