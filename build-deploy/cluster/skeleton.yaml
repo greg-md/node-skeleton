@@ -10,3 +10,5 @@ nodeGroups:
   - name: skeleton-nodes
     instanceType: t3.small
     desiredCapacity: 2
+    labels:
+      role: workers
