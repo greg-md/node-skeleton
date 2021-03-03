@@ -10,8 +10,8 @@ Skeleton of a NodeJS backend, using NestJS + GraphQL + NATS + Microservices + CI
 What has been done:
 - `nest new skeleton`
 - `nest generate app micro`
-- `npm remove @nestjs/platform-express @types/express`
 - `npm i nestjs/platform-fastify`
+- `npm remove @nestjs/platform-express @types/express supertest @types/supertest`
 - `npm i @nestjs/microservices`
 - `npm i nats`
 - `npm i sinon`
