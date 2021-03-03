@@ -5,6 +5,8 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/greg-md/node-skeleton/badge.svg?targetFile=package.json)](https://snyk.io/test/github/greg-md/node-skeleton?targetFile=package.json)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=greg-md_node-skeleton&metric=alert_status)](https://sonarcloud.io/dashboard?id=greg-md_node-skeleton)
 
+Skeleton of a NodeJS backend, using NestJS + GraphQL + NATS + Microservices + CI/CD + automated deployments with GitHub Actions using Kubernetes and AWS.
+
 What has been done:
 - `nest new skeleton`
 - `nest generate app micro`
