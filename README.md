@@ -5,7 +5,14 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/greg-md/node-skeleton/badge.svg?targetFile=package.json)](https://snyk.io/test/github/greg-md/node-skeleton?targetFile=package.json)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=greg-md_node-skeleton&metric=alert_status)](https://sonarcloud.io/dashboard?id=greg-md_node-skeleton)
 
-Skeleton of a NodeJS backend, using NestJS + GraphQL + NATS + Microservices + Docker + CI/CD + automated deployments with GitHub Actions using Kubernetes and AWS.
+Skeleton of a NodeJS backend, using
+[NestJS](https://nestjs.com/) +
+[GraphQL](https://docs.nestjs.com/graphql/quick-start) +
+[NATS](https://docs.nestjs.com/microservices/nats) +
+[Microservices](https://docs.nestjs.com/microservices/basics) +
+[Docker](https://www.docker.com/) +
+CI/CD +
+automated deployments with GitHub Actions using [Kubernetes](https://kubernetes.io/) and [AWS EKS](https://aws.amazon.com/eks/).
 
 Useful Tutorials:
 - [Kubernetes Tutorial](https://youtu.be/X48VuDVv0do)
