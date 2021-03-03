@@ -15,7 +15,8 @@ What has been done:
 - `npm i --save nats`
 - `npm install sinon`
 
-Table of Contents:
+# Table of Contents
+
 - [Build & Deploy](#build--deploy)
     - [Pre Requirements](#pre-requirements)
     - [Build](#build)
@@ -23,11 +24,11 @@ Table of Contents:
     - [Destroy](#destroy)
 - [Debug](#debug)
 
-## Build & Deploy
+# Build & Deploy
 
 You can build & deploy to local minikube or to AWS EKS using Kubernetes.
 
-### Pre Requirements
+## Pre Requirements
 
 Install and configure [AWS CLI](https://aws.amazon.com/cli/);
 
@@ -46,9 +47,9 @@ eksctl scale nodegroup --cluster=skeleton --nodes=4 --name=skeleton-nodes
 Tip:
 > Use `--kubeconfig ~/.kube/eksctl/clusters/skeleton` flag to use AWS EKS with `kubectl` or `helm`.
 
-### Build
+## Build
 
-#### Minikube
+### Minikube
 
 Use the minikube docker deamon to build the image:
 ```bash
@@ -60,14 +61,14 @@ Build images:
 - `docker build -t skeleton/micro --target production-micro .`
 
 
-#### AWS ECR
+### AWS ECR
 
 - Run [Build Api](actions/workflows/build-api.yml) action;
 - Run [Build Micro](actions/workflows/build-micro.yml) action.
 
-### Deploy
+## Deploy
 
-#### Minikube
+### Minikube
 
 ```sh
 helm upgrade nats ./build-deploy/helm/nats --install --wait
@@ -80,13 +81,13 @@ Explose API:
 minikube service api-service
 ```
 
-#### AWS ECR
+### AWS ECR
 
 - Run [Deploy NATS](actions/workflows/deploy-nats.yml) action;
 - Run [Deploy Micro](actions/workflows/deploy-micro.yml) action;
 - Run [Deploy Api](actions/workflows/deploy-api.yml) action.
 
-### Destroy
+## Destroy
 
 ```sh
 helm uninstall api [ --kubeconfig ~/.kube/eksctl/clusters/skeleton ]
@@ -99,7 +100,7 @@ Destroy AWS EKS Cluster:
 eksctl delete cluster --name skeleton
 ```
 
-## Debug
+# Debug
 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
