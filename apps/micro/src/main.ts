@@ -8,11 +8,14 @@ async function bootstrap() {
     {
       transport: Transport.NATS,
       options: {
-        url: process.env.NATS_URL || 'nats://nats:4222',
+        url: process.env.NATS_URL,
         queue: 'micro_queue',
       },
     },
   );
+
+  // Starts listening for shutdown hooks
+  app.enableShutdownHooks();
 
   await app.listenAsync();
 }

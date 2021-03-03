@@ -10,6 +10,10 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
+
+  // Starts listening for shutdown hooks
+  app.enableShutdownHooks();
+
   await app.listen(3000, '0.0.0.0');
 }
 bootstrap();

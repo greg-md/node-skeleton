@@ -8,12 +8,13 @@
 What has been done:
 - `nest new skeleton`
 - `nest generate app micro`
-- `npm i --save @nestjs/platform-fastify`
-- Used Fastify per documentation: https://docs.nestjs.com/techniques/performance
 - `npm remove @nestjs/platform-express @types/express`
-- `npm i --save @nestjs/microservices`
-- `npm i --save nats`
-- `npm install sinon`
+- `npm i nestjs/platform-fastify`
+- `npm i @nestjs/microservices`
+- `npm i nats`
+- `npm i sinon`
+- `npm i @nestjs/config`
+- `npm i @nestjs/graphql graphql-tools graphql apollo-server-fastify @moonwalker/graphql-nats-subscriptions`
 
 # Table of Contents
 
@@ -26,7 +27,7 @@ What has been done:
 
 # Build & Deploy
 
-You can build & deploy to local minikube or to AWS EKS using Kubernetes.
+You can build & deploy out of the box to local minikube or to AWS EKS using Kubernetes.
 
 ## Pre Requirements
 
