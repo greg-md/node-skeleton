@@ -1,10 +1,9 @@
-import { Injectable } from "@nestjs/common";
-import { Hello, HelloMetadata } from "./hello";
-import { HelloObject } from "./hello.object";
+import { Injectable } from '@nestjs/common';
+import { Hello, HelloMetadata } from './hello';
+import { HelloObject } from './hello.object';
 
 @Injectable()
-export class HelloObjectify
-{
+export class HelloObjectify {
   objectify(hello: Hello): HelloObject {
     return this.objectifyMetadata(hello.toMetadata());
   }

@@ -1,7 +1,7 @@
-import { PubSubEngine } from "graphql-subscriptions"
-import { PubSubAsyncIterator } from "graphql-subscriptions/dist/pubsub-async-iterator";
-import { Injectable, OnModuleDestroy } from "@nestjs/common";
-import { Client } from "nats";
+import { PubSubEngine } from 'graphql-subscriptions';
+import { PubSubAsyncIterator } from 'graphql-subscriptions/dist/pubsub-async-iterator';
+import { Injectable, OnModuleDestroy } from '@nestjs/common';
+import { Client } from 'nats';
 
 @Injectable()
 export class NatsPubSub implements PubSubEngine, OnModuleDestroy {
@@ -10,11 +10,16 @@ export class NatsPubSub implements PubSubEngine, OnModuleDestroy {
   }
 
   public async publish(subject: string, payload: any): Promise<void> {
-    this.client.publish(subject, JSON.stringify(payload))
+    this.client.publish(subject, JSON.stringify(payload));
   }
 
-  public async subscribe(subject: string, onMessage: Function): Promise<number> {
-    return this.client.subscribe(subject, (event: string) => onMessage(JSON.parse(event)));
+  public async subscribe(
+    subject: string,
+    onMessage: (message: string) => void,
+  ): Promise<number> {
+    return this.client.subscribe(subject, (event: string) =>
+      onMessage(JSON.parse(event)),
+    );
   }
 
   public unsubscribe(sid: number) {

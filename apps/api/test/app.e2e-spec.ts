@@ -1,6 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from './../src/app.module';
-import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 
 describe('AppController (e2e)', () => {
   let app: NestFastifyApplication;
@@ -10,7 +13,9 @@ describe('AppController (e2e)', () => {
       imports: [AppModule],
     }).compile();
 
-    app = moduleRef.createNestApplication<NestFastifyApplication>(new FastifyAdapter());
+    app = moduleRef.createNestApplication<NestFastifyApplication>(
+      new FastifyAdapter(),
+    );
 
     await app.init();
     await app.getHttpAdapter().getInstance().ready();
@@ -23,10 +28,10 @@ describe('AppController (e2e)', () => {
   it('/ (GET)', async () => {
     const result = await app.inject({
       method: 'GET',
-      url: '/'
+      url: '/',
     });
 
-    expect(result.statusCode).toEqual(200)
+    expect(result.statusCode).toEqual(200);
     expect(result.payload).toEqual('Hello World!');
   });
 });

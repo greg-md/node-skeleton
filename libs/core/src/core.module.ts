@@ -26,13 +26,9 @@ import { NatsPubSub } from './infrastructure/nats.pub-sub';
       useFactory: (configService: ConfigService) => {
         return new NatsPubSub(connect(configService.get('NATS_URL')));
       },
-      inject: [ ConfigService ],
-    }
+      inject: [ConfigService],
+    },
   ],
-  exports: [
-    ConfigModule,
-    ClientsModule,
-    PubSubEngine,
-  ],
+  exports: [ConfigModule, ClientsModule, PubSubEngine],
 })
 export class CoreModule {}

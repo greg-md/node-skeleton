@@ -30,8 +30,8 @@ import { tabs } from './playground/tabs';
 
       subscriptions: {
         // Send client payload to the connection context
-        onConnect: connectionParams => connectionParams,
-      }
+        onConnect: (connectionParams) => connectionParams,
+      },
     }),
     GqlHelloModule,
   ],

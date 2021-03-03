@@ -12,22 +12,22 @@ export class HelloResolver {
     private helloObjectify: HelloObjectify,
   ) {}
 
-  @Query(returns => HelloObject, { description: 'Say hello world.' })
+  @Query(() => HelloObject, { description: 'Say hello world.' })
   async helloWorld(): Promise<HelloObject> {
     const hello = new Hello('World');
 
     return this.helloObjectify.objectify(hello);
   }
 
-  @Mutation(returns => HelloObject, { description: 'Say hello to someone.' })
+  @Mutation(() => HelloObject, { description: 'Say hello to someone.' })
   async sayHello(@Args('hello') helloInput: HelloInput): Promise<HelloObject> {
     const hello = new Hello(helloInput.name);
 
     return this.helloObjectify.objectify(hello);
   }
 
-  @Subscription(returns => HelloObject,  {
-    resolve(this: HelloResolver, payload: HelloMetadata, args, context) {
+  @Subscription(() => HelloObject, {
+    resolve(this: HelloResolver, payload: HelloMetadata) {
       return this.helloObjectify.objectifyMetadata(payload);
     },
   })

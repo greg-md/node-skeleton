@@ -34,7 +34,7 @@ export const SayHelloTab: Tab = {
   variables: JSON.stringify({
     name: 'John',
   }),
-  headers: { ...authHeaders }
+  headers: { ...authHeaders },
 };
 
 export const OnHelloTab: Tab = {

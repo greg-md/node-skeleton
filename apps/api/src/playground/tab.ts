@@ -1,7 +1,7 @@
 export const endpoint = '/graphql';
 
 export const authHeaders = {
-  authorization: "Bearer ",
+  authorization: 'Bearer ',
 };
 
 export type Tab = {
@@ -11,6 +11,6 @@ export type Tab = {
   variables?: string;
   responses?: string[];
   headers?: {
-      [key: string]: string;
+    [key: string]: string;
   };
-}
+};

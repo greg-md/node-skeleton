@@ -4,9 +4,7 @@ import { MicroController } from './micro.controller';
 import { MicroService } from './micro.service';
 
 @Module({
-  imports: [
-    CoreModule,
-  ],
+  imports: [CoreModule],
   controllers: [MicroController],
   providers: [MicroService],
 })

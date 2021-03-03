@@ -6,15 +6,7 @@ import { HelloObjectify } from './domain/hello.objectify';
 import { HelloPubSub } from './infrastructure/hello.pub-sub';
 
 @Module({
-  providers: [
-    HelloObjectify,
-    HelloPubSub,
-    HelloService,
-
-    HelloResolver,
-  ],
-  controllers: [
-    HelloController,
-  ]
+  providers: [HelloObjectify, HelloPubSub, HelloService, HelloResolver],
+  controllers: [HelloController],
 })
 export class GqlHelloModule {}
