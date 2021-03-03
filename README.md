@@ -54,7 +54,13 @@ You can build & deploy out of the box to local minikube or to AWS EKS using Kube
 
 ## Pre Requirements
 
+Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/);
+
+Install [Helm](https://helm.sh/);
+
 ### Minikube
+
+Install [minikube](https://minikube.sigs.k8s.io/docs/start/);
 
 Start minikube:
 ```sh
