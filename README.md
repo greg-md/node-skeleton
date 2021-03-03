@@ -12,7 +12,7 @@ Skeleton of a NodeJS backend, using
 [Microservices](https://docs.nestjs.com/microservices/basics) +
 [Docker](https://www.docker.com/) +
 CI/CD +
-automated deployments with GitHub Actions using [Kubernetes](https://kubernetes.io/) and [AWS EKS](https://aws.amazon.com/eks/).
+automated deployments with GitHub Actions using [Kubernetes](https://kubernetes.io/), [Helm](https://helm.sh/) and [AWS EKS](https://aws.amazon.com/eks/).
 
 Useful Tutorials:
 - [Kubernetes Tutorial](https://youtu.be/X48VuDVv0do)
