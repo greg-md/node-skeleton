@@ -1,4 +1,4 @@
-name: Rollback Nats
+name: Rollback NATS
 on: workflow_dispatch
 jobs:
   rollback:

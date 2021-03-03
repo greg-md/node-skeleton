@@ -38,6 +38,7 @@ What has been done to the default app:
     - [Pre Requirements](#pre-requirements)
     - [Build](#build)
     - [Deploy](#deploy)
+    - [Rollback](#rollback)
     - [Destroy](#destroy)
 - [Debug](#debug)
 
@@ -126,12 +127,38 @@ minikube service api-service
 - Run [Deploy Micro](actions/workflows/deploy-micro.yml) action;
 - Run [Deploy Api](actions/workflows/deploy-api.yml) action.
 
-## Destroy
+## Rollback
+
+### Minikube
 
 ```sh
-helm uninstall api [ --kubeconfig ~/.kube/eksctl/clusters/skeleton ]
-helm uninstall micro [ --kubeconfig ~/.kube/eksctl/clusters/skeleton ]
-helm uninstall nats [ --kubeconfig ~/.kube/eksctl/clusters/skeleton ]
+helm rollback nats --wait
+helm rollback micro --wait
+helm rollback api --wait
+```
+
+### AWS ECR
+
+- Run [Rollback NATS](actions/workflows/rollback-nats.yml) action;
+- Run [Rollback Micro](actions/workflows/rollback-micro.yml) action;
+- Run [Rollback Api](actions/workflows/rollback-api.yml) action.
+
+## Destroy
+
+### Minikube
+
+```sh
+helm uninstall api
+helm uninstall micro
+helm uninstall nats
+```
+
+### AWS ECR
+
+```sh
+helm uninstall api --kubeconfig ~/.kube/eksctl/clusters/skeleton
+helm uninstall micro --kubeconfig ~/.kube/eksctl/clusters/skeleton
+helm uninstall nats --kubeconfig ~/.kube/eksctl/clusters/skeleton
 ```
 
 Destroy AWS EKS Cluster:
@@ -143,7 +170,7 @@ eksctl delete cluster --name skeleton
 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
-Listen for pod logs:
+Listen for logs:
 ```bash
 kubectl logs -f -l app=api --all-containers [ --kubeconfig ~/.kube/eksctl/clusters/skeleton ]
 kubectl logs -f -l app=micro --all-containers [ --kubeconfig ~/.kube/eksctl/clusters/skeleton ]
