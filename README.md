@@ -109,8 +109,8 @@ Build images:
 
 ### AWS ECR
 
-- Run [Build Api](.github/workflows/build-api.yml) action;
-- Run [Build Micro](.github/workflows/build-micro.yml) action.
+- Run GitHub Action: [Build Api](.github/workflows/build-api.yml);
+- Run GitHub Action: [Build Micro](.github/workflows/build-micro.yml).
 
 ## Deploy
 
@@ -129,9 +129,9 @@ minikube service api-service
 
 ### AWS ECR
 
-- Run [Deploy NATS](.github/workflows/deploy-nats.yml) action;
-- Run [Deploy Micro](.github/workflows/deploy-micro.yml) action;
-- Run [Deploy Api](.github/workflows/deploy-api.yml) action.
+- Run GitHub Action [Deploy NATS](.github/workflows/deploy-nats.yml);
+- Run GitHub Action [Deploy Micro](.github/workflows/deploy-micro.yml);
+- Run GitHub Action [Deploy Api](.github/workflows/deploy-api.yml).
 
 ## Rollback
 
@@ -145,9 +145,9 @@ helm rollback api --wait
 
 ### AWS ECR
 
-- Run [Rollback NATS](.github/workflows/rollback-nats.yml) action;
-- Run [Rollback Micro](.github/workflows/rollback-micro.yml) action;
-- Run [Rollback Api](.github/workflows/rollback-api.yml) action.
+- Run GitHub Action [Rollback NATS](.github/workflows/rollback-nats.yml);
+- Run GitHub Action [Rollback Micro](.github/workflows/rollback-micro.yml);
+- Run GitHub Action [Rollback Api](.github/workflows/rollback-api.yml).
 
 ## Destroy
 
