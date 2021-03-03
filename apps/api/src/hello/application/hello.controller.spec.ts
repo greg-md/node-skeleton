@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { of } from 'rxjs';
 import { mock, SinonMock } from 'sinon';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { HelloController } from './hello.controller';
+import { HelloService } from './hello.service';
 
-describe('AppController', () => {
-  let appController: AppController;
+describe('HelloController', () => {
+  let controller: HelloController;
 
   const clientProxy = {
     send: () => null,
@@ -16,14 +16,14 @@ describe('AppController', () => {
   beforeEach(async () => {
     clientProxyMock = mock(clientProxy);
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [AppController],
+      controllers: [HelloController],
       providers: [
-        AppService,
+        HelloService,
         { provide: 'MICRO_SERVICE', useValue: clientProxy },
       ],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    controller = app.get<HelloController>(HelloController);
   });
 
   afterEach(async () => {
@@ -44,7 +44,7 @@ describe('AppController', () => {
         .withExactArgs('hello_sent', result)
         .returns(of(true));
 
-      expect(await appController.getHello()).toBe('Hello World!');
+      expect(await controller.getHello()).toBe('Hello World!');
       clientProxyMock.verify();
     });
   });

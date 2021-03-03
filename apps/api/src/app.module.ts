@@ -1,9 +1,6 @@
 import { CoreModule } from '@app/core';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ClientsModule, Transport } from '@nestjs/microservices';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { GqlHelloModule } from './hello';
 import { tabs } from './playground/tabs';
 
@@ -13,16 +10,6 @@ import { tabs } from './playground/tabs';
       global: true,
       module: CoreModule,
     },
-    ClientsModule.register([
-      {
-        name: 'MICRO_SERVICE',
-        transport: Transport.NATS,
-        options: {
-          url: process.env.NATS_URL,
-          queue: 'micro_queue',
-        },
-      },
-    ]),
     GraphQLModule.forRoot({
       debug: process.env.GRAPHQL_DEBUG === '1',
       playground: process.env.NODE_ENV === 'development' ? { tabs } : false,
@@ -48,7 +35,5 @@ import { tabs } from './playground/tabs';
     }),
     GqlHelloModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

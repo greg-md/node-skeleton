@@ -1,12 +1,12 @@
 import { Controller, Get, Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { AppService } from './app.service';
+import { HelloService } from './hello.service';
 import { timeout } from 'rxjs/operators';
 
 @Controller()
-export class AppController {
+export class HelloController {
   constructor(
-    private readonly appService: AppService,
+    private readonly helloService: HelloService,
     @Inject('MICRO_SERVICE') private client: ClientProxy,
   ) {}
 
@@ -19,6 +19,6 @@ export class AppController {
 
     await this.client.emit<number>('hello_sent', result).toPromise();
 
-    return this.appService.getHello();
+    return this.helloService.getHello();
   }
 }
