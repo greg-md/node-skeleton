@@ -5,10 +5,16 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/greg-md/node-skeleton/badge.svg?targetFile=package.json)](https://snyk.io/test/github/greg-md/node-skeleton?targetFile=package.json)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=greg-md_node-skeleton&metric=alert_status)](https://sonarcloud.io/dashboard?id=greg-md_node-skeleton)
 
-Skeleton of a NodeJS backend, using NestJS + GraphQL + NATS + Microservices + CI/CD + automated deployments with GitHub Actions using Kubernetes and AWS.
+Skeleton of a NodeJS backend, using NestJS + GraphQL + NATS + Microservices + Docker + CI/CD + automated deployments with GitHub Actions using Kubernetes and AWS.
 
-What has been done:
+Useful Tutorials:
+- [Kubernetes Tutorial](https://youtu.be/X48VuDVv0do)
+- [AWS EKS - Create Kubernetes cluster on Amazon EKS](https://youtu.be/p6xDCz00TxU)
+
+What has been done to the default app:
+- `npm i -g @nestjs/cli`
 - `nest new node-skeleton`
+- `cd node-skeleton`
 - `nest generate app micro`
 - `npm i nestjs/platform-fastify`
 - `npm remove @nestjs/platform-express @types/express supertest @types/supertest`
@@ -20,6 +26,7 @@ What has been done:
 
 # Table of Contents
 
+- [Local Run](#local-run)
 - [Build & Deploy](#build--deploy)
     - [Pre Requirements](#pre-requirements)
     - [Build](#build)
@@ -27,11 +34,27 @@ What has been done:
     - [Destroy](#destroy)
 - [Debug](#debug)
 
+# Local Run
+
+Using Docker:
+```sh
+docker-compose up
+```
+
 # Build & Deploy
 
 You can build & deploy out of the box to local minikube or to AWS EKS using Kubernetes.
 
 ## Pre Requirements
+
+### Minikube
+
+Start minikube:
+```sh
+minikube start
+```
+
+### AWS ECR
 
 Install and configure [AWS CLI](https://aws.amazon.com/cli/);
 
