@@ -31,7 +31,7 @@ What has been done to the default app:
 - `npm i @nestjs/config`
 - `npm i @nestjs/graphql graphql-tools graphql apollo-server-fastify @moonwalker/graphql-nats-subscriptions`
 
-# Table of Contents
+### Table of Contents
 
 - [Local Run](#local-run)
 - [Build & Deploy](#build--deploy)
