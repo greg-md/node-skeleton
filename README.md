@@ -17,7 +17,7 @@ automated deployments with GitHub Actions using
 [Helm](https://helm.sh/) and
 [AWS EKS](https://aws.amazon.com/eks/).
 
-The code has been refactored using [Domain-Driven Design (DDD)](https://thedomaindrivendesign.io/).
+The code is using [Domain-Driven Design (DDD)](https://thedomaindrivendesign.io/).
 
 Useful Documentation:
 - [Kubernetes Tutorial](https://youtu.be/X48VuDVv0do)
