@@ -37,6 +37,16 @@ What has been done to the default app:
 - `npm i @nestjs/config`
 - `npm i @nestjs/graphql graphql-tools graphql apollo-server-fastify @moonwalker/graphql-nats-subscriptions`
 
+GitHub Repository Secrets:
+
+```sh
+AWS_ACCESS_KEY_ID # AWS Access Key ID
+AWS_SECRET_ACCESS_KEY # AWS Access Key Secret
+CC_TEST_REPORTER_ID # CodeClimate Code Coverage Reporter ID
+KUBE_CONFIG_DATA # cat $HOME/.kube/eksctl/clusters/skeleton | base64
+```
+
+
 ### Table of Contents
 
 - [Local Run](#local-run)
