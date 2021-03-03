@@ -8,7 +8,7 @@
 Skeleton of a NodeJS backend, using NestJS + GraphQL + NATS + Microservices + CI/CD + automated deployments with GitHub Actions using Kubernetes and AWS.
 
 What has been done:
-- `nest new skeleton`
+- `nest new node-skeleton`
 - `nest generate app micro`
 - `npm i nestjs/platform-fastify`
 - `npm remove @nestjs/platform-express @types/express supertest @types/supertest`
