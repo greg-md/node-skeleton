@@ -33,4 +33,4 @@ jobs:
         IMAGE_TAG: ${{ github.event.inputs.build }}
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
-        command: helm upgrade micro ./build-deploy/helm/micro --install --wait --set image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        command: helm upgrade micro ./build-deploy/helm/micro --install --wait --set image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --set pullPolicy=Always
