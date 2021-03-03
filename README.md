@@ -12,11 +12,17 @@ Skeleton of a NodeJS backend, using
 [Microservices](https://docs.nestjs.com/microservices/basics) +
 [Docker](https://www.docker.com/) +
 CI/CD +
-automated deployments with GitHub Actions using [Kubernetes](https://kubernetes.io/), [Helm](https://helm.sh/) and [AWS EKS](https://aws.amazon.com/eks/).
+automated deployments with GitHub Actions using
+[Kubernetes](https://kubernetes.io/),
+[Helm](https://helm.sh/) and
+[AWS EKS](https://aws.amazon.com/eks/).
 
-Useful Tutorials:
+The code has been refactored using [Domain-Driven Design (DDD)](https://thedomaindrivendesign.io/).
+
+Useful Documentation:
 - [Kubernetes Tutorial](https://youtu.be/X48VuDVv0do)
 - [AWS EKS - Create Kubernetes cluster on Amazon EKS](https://youtu.be/p6xDCz00TxU)
+- [Concept, Pros & Cons of Domain Driven Design](https://www.optimistikinfo.com/blogs/domain-driven-design)
 
 What has been done to the default app:
 - `npm i -g @nestjs/cli`
