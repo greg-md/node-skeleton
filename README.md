@@ -109,7 +109,7 @@ Build images:
 
 ### AWS ECR
 
-- Run [Build Api](actions/workflows/build-api.yml) action;
+- Run [Build Api](.github/workflows/build-api.yml) action;
 - Run [Build Micro](actions/workflows/build-micro.yml) action.
 
 ## Deploy
