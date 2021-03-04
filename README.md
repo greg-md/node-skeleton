@@ -193,7 +193,7 @@ make help
 ```
 
 Output:
-```sh
+```
 Usage: make <command>
 
 command              help
