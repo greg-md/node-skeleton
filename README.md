@@ -55,7 +55,9 @@ KUBE_CONFIG_DATA # cat $HOME/.kube/eksctl/clusters/skeleton | base64
     - [Deploy](#deploy)
     - [Rollback](#rollback)
     - [Destroy](#destroy)
-- [Debug](#debug)
+- [Cheatsheet](#cheatsheet)
+    - [Make Commands](#make-commands)
+    - [Debug](#debug)
 
 # Local Run
 
@@ -185,7 +187,7 @@ eksctl delete cluster --name skeleton
 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
-### Make commands
+## Make commands
 
 To check the command list:
 ```sh
@@ -211,7 +213,7 @@ clean                Destroy docker containers, local images and volumes.
 ci                   Run tests in CI mode.
 ```
 
-### Debug
+## Debug
 
 Listen for logs:
 ```bash
