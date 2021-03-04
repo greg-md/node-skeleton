@@ -190,3 +190,8 @@ Listen for logs:
 kubectl logs -f -l app=api --all-containers [ --kubeconfig ~/.kube/eksctl/clusters/skeleton ]
 kubectl logs -f -l app=micro --all-containers [ --kubeconfig ~/.kube/eksctl/clusters/skeleton ]
 ```
+
+Enter pods:
+```
+kubectl exec --stdin --tty <pod-name> -- /bin/sh
+```

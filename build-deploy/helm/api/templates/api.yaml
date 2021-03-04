@@ -15,14 +15,21 @@ spec:
         app: api
     spec:
       containers:
-      - name: api
-        image: {{ .Values.image }}
-        imagePullPolicy: {{ .Values.pullPolicy }}
-        ports:
-          - containerPort: 3000
-        env:
-          - name: NATS_URL
-            value: "nats://nats:4222"
+        - name: api
+          image: {{ .Values.image }}
+          imagePullPolicy: {{ .Values.pullPolicy }}
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NATS_URL
+              value: "nats://nats:4222"
+          volumeMounts:
+            - name: log
+              mountPath: /var/log/api
+      volumes:
+        - name: log
+          persistentVolumeClaim:
+            claimName: api-log-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -37,3 +44,16 @@ spec:
       port: 3000
       targetPort: 3000
       nodePort: 30000
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: api-log-pvc
+spec:
+  storageClassName: {{ .Values.storageClassName }}
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100M

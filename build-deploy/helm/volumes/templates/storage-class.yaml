@@ -1,0 +1,9 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: skeleton-storage-class
+provisioner: {{ .Values.provisioner }}
+parameters:
+  type: io1
+  iopsPerGB: "10"
+  fsType: ext4

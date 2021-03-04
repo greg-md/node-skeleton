@@ -15,9 +15,29 @@ spec:
         app: micro
     spec:
       containers:
-      - name: micro
-        image: {{ .Values.image }}
-        imagePullPolicy: {{ .Values.pullPolicy }}
-        env:
-          - name: NATS_URL
-            value: "nats://nats:4222"
+        - name: micro
+          image: {{ .Values.image }}
+          imagePullPolicy: {{ .Values.pullPolicy }}
+          env:
+            - name: NATS_URL
+              value: "nats://nats:4222"
+          volumeMounts:
+            - name: log
+              mountPath: /var/log/micro
+      volumes:
+        - name: log
+          persistentVolumeClaim:
+            claimName: micro-log-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: micro-log-pvc
+spec:
+  storageClassName: {{ .Values.storageClassName }}
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100M
