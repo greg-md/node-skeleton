@@ -6,8 +6,8 @@ help: ## Help dialog.
 	printf "make <command>" ; \
 	printf "\033[0m" ; \
 	printf "\n\n" ; \
-	printf "%-20s %s\n" "command" "help" ; \
-	printf "%-20s %s\n" "------" "----" ; \
+	printf "%-20s %s\n" "command" "description" ; \
+	printf "%-20s %s\n" "------" "-----------" ; \
 	for help_line in $${help_lines[@]}; do \
 		IFS=$$':' ; \
 		help_split=($$help_line) ; \
