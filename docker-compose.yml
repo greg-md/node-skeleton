@@ -14,6 +14,18 @@ services:
       - node_modules:/node/node_modules
     ports:
       - "3000:3000"
+  ci:
+    build:
+      context: ${DOCKER_ROOT:-.}
+      target: development
+    depends_on:
+      - main
+    env_file:
+      - ${DOCKER_ROOT:-.}/.env
+    command: ./build-deploy/ci.sh
+    volumes:
+      - ${DOCKER_ROOT:-.}:/node:delegated
+      - ci_node_modules:/node/node_modules
   nats:
     image: nats
     ports:
@@ -35,3 +47,4 @@ services:
   #     - nats
 volumes:
   node_modules:
+  ci_node_modules:
