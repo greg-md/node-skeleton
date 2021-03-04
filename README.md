@@ -196,8 +196,8 @@ Output:
 ```
 Usage: make <command>
 
-command              help
-------               ----
+command              description
+------               -----------
 help                 Help dialog.
 pull                 Pull docker images.
 build                Build docker images based on docker-compose.yml file.
