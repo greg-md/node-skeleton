@@ -181,9 +181,37 @@ Destroy AWS EKS Cluster:
 eksctl delete cluster --name skeleton
 ```
 
-# Debug
+# Cheatsheet
 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+### Make commands
+
+To check the command list:
+```sh
+make help
+```
+
+Output:
+```sh
+Usage: make <command>
+
+command              help
+------               ----
+help                 Help dialog.
+pull                 Pull docker images.
+build                Build docker images based on docker-compose.yml file.
+up                   Start docker containers.
+upd                  Start docker containers in daemon mode.
+upp                  Rebuild and start docker containers.
+main                 Enter the 'main' docker container.
+stop                 Stop docker containers.
+down                 Destroy docker containers and volumes.
+clean                Destroy docker containers, local images and volumes.
+ci                   Run tests in CI mode.
+```
+
+### Debug
 
 Listen for logs:
 ```bash
