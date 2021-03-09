@@ -36,6 +36,7 @@ What has been done to the default app:
 - `npm i sinon`
 - `npm i @nestjs/config`
 - `npm i @nestjs/graphql graphql-tools graphql apollo-server-fastify @moonwalker/graphql-nats-subscriptions`
+- `npm i winston colors`
 
 ### GitHub Repository Secrets
 

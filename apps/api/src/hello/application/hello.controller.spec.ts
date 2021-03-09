@@ -1,3 +1,4 @@
+import { MICRO_SERVICE } from '@app/core';
 import { Test, TestingModule } from '@nestjs/testing';
 import { of } from 'rxjs';
 import { mock, SinonMock } from 'sinon';
@@ -19,7 +20,7 @@ describe('HelloController', () => {
       controllers: [HelloController],
       providers: [
         HelloService,
-        { provide: 'MICRO_SERVICE', useValue: clientProxy },
+        { provide: MICRO_SERVICE, useValue: clientProxy },
       ],
     }).compile();
 

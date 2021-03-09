@@ -4,6 +4,8 @@ FROM node:14 AS development
 
 RUN npm i -g npm@latest
 
+RUN mkdir /var/log/skeleton
+
 WORKDIR /node
 COPY package*.json ./
 RUN npm ci && npm cache clean --force

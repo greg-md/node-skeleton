@@ -25,7 +25,7 @@ spec:
               value: "nats://nats:4222"
           volumeMounts:
             - name: log
-              mountPath: /var/log/api
+              mountPath: /var/log/skeleton
       volumes:
         - name: log
           persistentVolumeClaim:

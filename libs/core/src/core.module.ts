@@ -4,19 +4,26 @@ import { ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { PubSubEngine } from 'graphql-subscriptions';
 import { connect } from 'nats';
+import { LOGGER } from './domain/logger';
+import { MICRO_SERVICE } from './domain/micro-service';
 import { NatsPubSub } from './infrastructure/nats.pub-sub';
+import { createLoggerFactory } from './infrastructure/winston.logger';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    ClientsModule.register([
+    ClientsModule.registerAsync([
       {
-        name: 'MICRO_SERVICE',
-        transport: Transport.NATS,
-        options: {
-          url: process.env.NATS_URL,
-          queue: 'micro_queue',
-        },
+        name: MICRO_SERVICE,
+        imports: [ConfigModule],
+        useFactory: (configService: ConfigService) => ({
+          transport: Transport.NATS,
+          options: {
+            url: configService.get('NATS_URL'),
+            queue: 'micro_queue',
+          },
+        }),
+        inject: [ConfigService],
       },
     ]),
   ],
@@ -28,7 +35,14 @@ import { NatsPubSub } from './infrastructure/nats.pub-sub';
       },
       inject: [ConfigService],
     },
+    {
+      provide: LOGGER,
+      useFactory: (configService: ConfigService) => {
+        return createLoggerFactory('Main', configService);
+      },
+      inject: [ConfigService],
+    },
   ],
-  exports: [ConfigModule, ClientsModule, PubSubEngine],
+  exports: [ConfigModule, ClientsModule, PubSubEngine, LOGGER],
 })
 export class CoreModule {}
