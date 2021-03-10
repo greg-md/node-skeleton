@@ -4,16 +4,13 @@ import { createLogger, transports } from 'winston';
 import { ConfigService } from '@nestjs/config';
 
 colors.setTheme({
-  silly: 'rainbow',
-  input: 'grey',
-  verbose: 'cyan',
-  prompt: 'grey',
-  info: 'green',
-  data: 'grey',
-  help: 'cyan',
-  warn: 'yellow',
-  debug: 'blue',
   error: 'red',
+  warn: 'magenta',
+  info: 'green',
+  http: 'cyan',
+  verbose: 'cyan',
+  debug: 'blue',
+  silly: 'grey',
 });
 
 const splat = (Symbol.for('splat') as unknown) as string;
@@ -78,6 +75,7 @@ export function createLoggerFactory(
   if (configService.get('NODE_ENV') === 'development') {
     logger.add(
       new transports.Console({
+        level: 'silly',
         format: format.combine(colorize(), logFormat),
       }),
     );
