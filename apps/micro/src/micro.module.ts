@@ -4,9 +4,7 @@ import { MicroController } from './application/micro.controller';
 import { MicroService } from './application/micro.service';
 
 @Module({
-  imports: [
-    CoreModule.forRoot({ loggerLabel: 'Micro' }),
-  ],
+  imports: [CoreModule.forRoot({ loggerLabel: 'Micro' })],
   controllers: [MicroController],
   providers: [MicroService],
 })

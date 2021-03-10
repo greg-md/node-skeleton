@@ -51,14 +51,15 @@ export class CoreModule {
         {
           provide: LOGGER,
           useFactory: (configService: ConfigService) => {
-            return createLoggerFactory(options.loggerLabel || 'Main', configService);
+            return createLoggerFactory(
+              options.loggerLabel || 'Main',
+              configService,
+            );
           },
           inject: [ConfigService],
         },
       ],
-      exports: [
-        LOGGER,
-      ]
+      exports: [LOGGER],
     };
   }
 }
