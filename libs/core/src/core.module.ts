@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
@@ -8,6 +8,10 @@ import { LOGGER } from './domain/logger';
 import { MICRO_SERVICE } from './domain/micro-service';
 import { NatsPubSub } from './infrastructure/nats.pub-sub';
 import { createLoggerFactory } from './infrastructure/winston.logger';
+
+export type CoreModuleOptions = {
+  loggerLabel?: string;
+};
 
 @Module({
   imports: [
@@ -35,14 +39,26 @@ import { createLoggerFactory } from './infrastructure/winston.logger';
       },
       inject: [ConfigService],
     },
-    {
-      provide: LOGGER,
-      useFactory: (configService: ConfigService) => {
-        return createLoggerFactory('Main', configService);
-      },
-      inject: [ConfigService],
-    },
   ],
-  exports: [ConfigModule, ClientsModule, PubSubEngine, LOGGER],
+  exports: [ConfigModule, ClientsModule, PubSubEngine],
 })
-export class CoreModule {}
+export class CoreModule {
+  static forRoot(options: CoreModuleOptions): DynamicModule {
+    return {
+      global: true,
+      module: CoreModule,
+      providers: [
+        {
+          provide: LOGGER,
+          useFactory: (configService: ConfigService) => {
+            return createLoggerFactory(options.loggerLabel || 'Main', configService);
+          },
+          inject: [ConfigService],
+        },
+      ],
+      exports: [
+        LOGGER,
+      ]
+    };
+  }
+}

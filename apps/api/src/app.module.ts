@@ -7,10 +7,7 @@ import { tabs } from './playground/tabs';
 
 @Module({
   imports: [
-    {
-      global: true,
-      module: CoreModule,
-    },
+    CoreModule.forRoot({ loggerLabel: 'Api' }),
     GraphQLModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
         debug: configService.get('GRAPHQL_DEBUG') === '1',
