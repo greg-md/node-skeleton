@@ -29,7 +29,7 @@
     "@nestjs/microservices": "^7.6.12",
     "@nestjs/platform-fastify": "^7.6.12",
     "@types/sinon": "^9.0.10",
-    "apollo-server-fastify": "^2.21.0",
+    "apollo-server-fastify": "^3.13.0",
     "graphql": "^14.7.0",
     "graphql-tools": "^4.0.8",
     "nats": "^1.4.12",
